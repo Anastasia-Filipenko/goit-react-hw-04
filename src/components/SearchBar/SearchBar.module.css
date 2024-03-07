@@ -1,0 +1,18 @@
+.header {
+  background-color: slateblue;
+  display: flex;
+  height: 40px;
+  align-items: center;
+  justify-content: center;
+}
+
+.input {
+  border-radius: 5px;
+  height: 25px;
+  width: 400px;
+}
+
+.btn {
+  border-radius: 5px;
+  height: 25px;
+}
