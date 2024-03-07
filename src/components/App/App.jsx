@@ -1,4 +1,4 @@
-// import css from '../App/App.module.css';
+import css from '../App/App.module.css';
 
 import Modal from 'react-modal';
 import { useEffect, useState } from 'react';
@@ -75,9 +75,10 @@ export default function App() {
           visible={true}
           height="80"
           width="80"
-          color="#4fa94d"
+          color="slateblue"
           radius="9"
           ariaLabel="three-dots-loading"
+          wrapperClass={css.loader}
         />
       )}
       {images.length > 0 && <LoadMoreBtn onClick={handleLoadMore} />}
