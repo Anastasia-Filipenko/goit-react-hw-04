@@ -20,14 +20,15 @@ export default function App() {
   const [error, setError] = useState(false);
 
   Modal.setAppElement('#root');
+  console.log(images.length);
 
   useEffect(() => {
+    if (!query) {
+      return;
+    }
+
     async function getData() {
       try {
-        if (!query) {
-          return;
-        }
-
         const data = await fetchImages(query, page);
 
         if (data.length === 0) {
@@ -46,15 +47,17 @@ export default function App() {
     getData();
   }, [page, query]);
 
-  const handleSubmit = async searchValue => {
+  const handleSubmit = searchValue => {
     if (!searchValue) {
       toast.error('Please, enter the value');
+
       return;
     }
 
     setLoading(true);
     setQuery(searchValue);
     setImages([]);
+    setPage(1);
   };
 
   const handleLoadMore = () => {
