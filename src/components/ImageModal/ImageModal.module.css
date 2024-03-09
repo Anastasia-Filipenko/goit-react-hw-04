@@ -4,10 +4,16 @@
   align-items: center;
 }
 .img {
-  width: 80%;
-  height: 80%;
+  height: 75%;
 }
 
 .text {
   font-size: medium;
+}
+.text:nth-child(1) {
+  margin-right: 50px;
+}
+.container {
+  width: 80%;
+  text-align: center;
 }

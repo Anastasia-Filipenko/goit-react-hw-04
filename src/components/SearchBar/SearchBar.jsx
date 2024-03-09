@@ -1,4 +1,3 @@
-import toast from 'react-hot-toast';
 import css from '../SearchBar/SearchBar.module.css';
 
 export default function SearchBar({ onSubmit }) {
@@ -6,9 +5,6 @@ export default function SearchBar({ onSubmit }) {
     e.preventDefault();
     const form = e.target;
     onSubmit(form.elements[0].value);
-    if (form.elements[0].value === '') {
-      toast.error('Enter the value');
-    }
   };
 
   return (

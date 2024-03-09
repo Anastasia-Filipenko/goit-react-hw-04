@@ -1,15 +1,14 @@
-import css from '../App/App.module.css';
-
 import Modal from 'react-modal';
 import { useEffect, useState } from 'react';
 import { fetchImages } from '../../api';
 import SearchBar from '../SearchBar/SearchBar';
 import toast, { Toaster } from 'react-hot-toast';
 import ImageGallery from '../ImageGallery/ImageGallery';
-import { ThreeDots } from 'react-loader-spinner';
+
 import LoadMoreBtn from '../LoadMoreBtn/LoadMoreBtn';
 import ImageModal from '../ImageModal/ImageModal';
 import ErrorMessage from '../ErrorMessage/ErrorMessage';
+import Loader from '../Loader/Loader';
 
 export default function App() {
   const [query, setQuery] = useState('');
@@ -33,7 +32,9 @@ export default function App() {
 
         if (data.length === 0) {
           toast.error('Nothing found by value');
+          setError(true);
         }
+
         setImages(prevData => {
           return [...prevData, ...data];
         });
@@ -47,6 +48,11 @@ export default function App() {
   }, [page, query]);
 
   const handleSubmit = async searchValue => {
+    if (!searchValue) {
+      toast.error('Please, enter the value');
+      return;
+    }
+
     setLoading(true);
     setQuery(searchValue);
     setImages([]);
@@ -70,17 +76,7 @@ export default function App() {
       <Toaster position="top-right" />
       <SearchBar onSubmit={handleSubmit} value={images} />
       {images.length > 0 && <ImageGallery images={images} onOpen={openModal} />}
-      {isLoading && (
-        <ThreeDots
-          visible={true}
-          height="80"
-          width="80"
-          color="slateblue"
-          radius="9"
-          ariaLabel="three-dots-loading"
-          wrapperClass={css.loader}
-        />
-      )}
+      {isLoading && <Loader />}
       {images.length > 0 && <LoadMoreBtn onClick={handleLoadMore} />}
       {modalIsOpen && (
         <ImageModal

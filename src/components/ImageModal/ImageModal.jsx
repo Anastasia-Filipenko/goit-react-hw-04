@@ -25,11 +25,16 @@ export default function ImageModal({ modalIsOpen, closeModal, imageContent }) {
             src={imageContent.urls.small}
             alt={imageContent.alt_description}
           />
-          <p className={css.text}>Likes: {imageContent.likes}</p>
+          <div className={css.container}>
+            <p className={css.text}>Likes: {imageContent.likes}</p>
 
-          {imageContent.description && (
-            <p className={css.text}> Description: {imageContent.description}</p>
-          )}
+            {imageContent.description && (
+              <p className={css.text}>
+                {' '}
+                Description: {imageContent.description}
+              </p>
+            )}
+          </div>
         </div>
       </Modal>
     </div>
