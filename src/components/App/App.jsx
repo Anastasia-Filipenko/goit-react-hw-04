@@ -31,7 +31,6 @@ export default function App() {
         const data = await fetchImages(query, page);
 
         if (data.length === 0) {
-          toast.error('Nothing found by value');
           setError(true);
         }
 
