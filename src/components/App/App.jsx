@@ -20,7 +20,6 @@ export default function App() {
   const [error, setError] = useState(false);
 
   Modal.setAppElement('#root');
-  console.log(images.length);
 
   useEffect(() => {
     if (!query) {
